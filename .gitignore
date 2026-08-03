@@ -2,3 +2,13 @@ __pycache__/
 *.pyc
 instance/
 *.log
+flask.err
+
+# Entorno virtual
+.venv/
+
+# Base de datos local
+*.db
+
+# Caché de pytest
+.pytest_cache/

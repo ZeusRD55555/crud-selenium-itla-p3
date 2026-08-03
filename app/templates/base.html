@@ -11,11 +11,19 @@
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('main.index') }}">Sistema CRUD</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="{{ url_for('main.listar_usuarios') }}">Usuarios</a>
+                {% if session.get('admin_id') %}
+                    <a class="nav-link" href="{{ url_for('main.listar_usuarios') }}">Usuarios</a>
+                    <span class="navbar-text mx-3">Bienvenido, {{ session.get('admin_username') }}</span>
+                    <form action="{{ url_for('main.logout') }}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                    </form>
+                {% else %}
+                    <a class="nav-link" href="{{ url_for('main.login') }}">Iniciar sesión</a>
+                {% endif %}
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" id="content">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
