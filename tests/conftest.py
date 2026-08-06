@@ -1,5 +1,6 @@
 import os
 import random
+import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -49,6 +50,7 @@ def driver():
     drv.implicitly_wait(5)
     drv.set_window_size(1280, 800)
     yield drv
+    time.sleep(2)
     drv.quit()
 
 
