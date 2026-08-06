@@ -33,7 +33,8 @@ def correo_unico(dominio="@gmail.com"):
 
 def _driver_options():
     options = Options()
-    options.add_argument("--headless=new")
+    if os.environ.get("HEADLESS"):
+        options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1280,800")
