@@ -1,7 +1,7 @@
 import time
 import pytest
 from selenium.webdriver.common.by import By
-from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit
+from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit, correo_unico
 
 
 @pytest.mark.usefixtures("logged_in")
@@ -9,7 +9,7 @@ class TestListarUsuarios:
 
     def test_listar_usuario_creado(self, driver):
         nombre = f"Listado Usuario {int(time.time())}"
-        correo = f"listado{int(time.time() * 1000)}@itla.edu.do"
+        correo = correo_unico("@itla.edu.do")
         driver.get(f"{BASE_URL}/usuarios/crear")
         wait_for_element(driver, By.ID, "nombre")
         driver.find_element(By.ID, "nombre").send_keys(nombre)

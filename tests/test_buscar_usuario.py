@@ -1,11 +1,7 @@
 import time
 import pytest
 from selenium.webdriver.common.by import By
-from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit
-
-
-def unique_email(prefix="buscar"):
-    return f"{prefix}{int(time.time() * 1000)}@gmail.com"
+from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit, correo_unico
 
 
 @pytest.mark.usefixtures("logged_in")
@@ -29,7 +25,7 @@ class TestBuscarUsuario:
 
     def test_buscar_usuario_encontrado(self, driver):
         nombre = f"Persona Busqueda {int(time.time())}"
-        correo = unique_email()
+        correo = correo_unico()
         self._crear(driver, nombre, correo, "809-555-9000")
         self._buscar(driver, nombre)
         wait_for_text(driver, nombre)

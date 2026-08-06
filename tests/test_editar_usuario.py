@@ -1,7 +1,7 @@
 ﻿import time
 import pytest
 from selenium.webdriver.common.by import By
-from conftest import BASE_URL, logged_in, submit_force, wait_for_text, wait_for_element, click_submit
+from conftest import BASE_URL, logged_in, submit_force, wait_for_text, wait_for_element, click_submit, correo_unico
 
 
 def unique_suffix():
@@ -31,7 +31,7 @@ class TestEditarUsuario:
 
     def test_editar_usuario_correcto(self, driver):
         suf = unique_suffix()
-        correo = f"editar{suf}@gmail.com"
+        correo = correo_unico()
         nombre_original = f"Nombre Original {suf}"
         nombre_editado = f"Nombre Editado {suf}"
         self._crear(driver, nombre_original, correo, "809-555-1234")
@@ -47,8 +47,8 @@ class TestEditarUsuario:
 
     def test_editar_usuario_correo_duplicado(self, driver):
         suf = unique_suffix()
-        correo_a = f"dupla{suf}@itla.edu.do"
-        correo_b = f"duplb{suf}@gmail.com"
+        correo_a = correo_unico("@itla.edu.do")
+        correo_b = correo_unico()
         nombre_a = f"Usuario A {suf}"
         nombre_b = f"Usuario B {suf}"
         self._crear(driver, nombre_a, correo_a, "809-555-1000")
@@ -63,7 +63,7 @@ class TestEditarUsuario:
 
     def test_editar_usuario_nombre_vacio(self, driver):
         suf = unique_suffix()
-        correo = f"limite{suf}@itla.edu.do"
+        correo = correo_unico("@itla.edu.do")
         nombre = f"Usuario Limite {suf}"
         self._crear(driver, nombre, correo, "809-555-3000")
         self._buscar_editar(driver, nombre)

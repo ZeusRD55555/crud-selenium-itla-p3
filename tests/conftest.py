@@ -1,4 +1,5 @@
 import os
+import random
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -14,6 +15,20 @@ ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin123"
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCREENSHOT_DIR = os.path.join(PROJECT_ROOT, "screenshots")
+
+NOMBRES = [
+    "juan", "maria", "carlos", "ana", "luis", "carmen", "pedro", "laura",
+    "diego", "sofia", "andres", "valeria", "roberto", "diana", "oscar",
+]
+
+APELLIDOS = [
+    "perez", "garcia", "martinez", "rodriguez", "sanchez", "diaz", "flores",
+    "reyes", "castillo", "vargas", "torres", "ramirez", "gomez", "ruiz",
+]
+
+
+def correo_unico(dominio="@gmail.com"):
+    return f"{random.choice(NOMBRES)}.{random.choice(APELLIDOS)}{random.randint(10, 99)}{dominio}"
 
 
 def _driver_options():

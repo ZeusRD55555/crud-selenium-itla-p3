@@ -1,7 +1,7 @@
 import time
 import pytest
 from selenium.webdriver.common.by import By
-from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit
+from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, click_submit, correo_unico
 
 
 def unique_suffix():
@@ -36,7 +36,7 @@ class TestEliminarUsuario:
     def test_eliminar_usuario_correcto(self, driver):
         suf = unique_suffix()
         nombre = f"Usuario a Borrar {suf}"
-        correo = f"borrar{suf}@gmail.com"
+        correo = correo_unico()
         self._crear(driver, nombre, correo, "809-555-7777")
         self._clic_eliminar(driver, nombre)
         wait_for_text(driver, "Usuario eliminado exitosamente.")
@@ -52,7 +52,7 @@ class TestEliminarUsuario:
     def test_eliminar_usuario_cancelado(self, driver):
         suf = unique_suffix()
         nombre = f"Usuario Cancelado {suf}"
-        correo = f"cancelar{suf}@itla.edu.do"
+        correo = correo_unico("@itla.edu.do")
         self._crear(driver, nombre, correo, "809-555-8888")
         self._clic_eliminar(driver, nombre, confirmar=False)
         driver.get(f"{BASE_URL}/usuarios?q={nombre}")
