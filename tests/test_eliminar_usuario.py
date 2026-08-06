@@ -36,7 +36,7 @@ class TestEliminarUsuario:
     def test_eliminar_usuario_correcto(self, driver):
         suf = unique_suffix()
         nombre = f"Usuario a Borrar {suf}"
-        correo = f"borrar{suf}@test.com"
+        correo = f"borrar{suf}@gmail.com"
         self._crear(driver, nombre, correo, "809-555-7777")
         self._clic_eliminar(driver, nombre)
         wait_for_text(driver, "Usuario eliminado exitosamente.")
@@ -52,7 +52,7 @@ class TestEliminarUsuario:
     def test_eliminar_usuario_cancelado(self, driver):
         suf = unique_suffix()
         nombre = f"Usuario Cancelado {suf}"
-        correo = f"cancelar{suf}@test.com"
+        correo = f"cancelar{suf}@itla.edu.do"
         self._crear(driver, nombre, correo, "809-555-8888")
         self._clic_eliminar(driver, nombre, confirmar=False)
         driver.get(f"{BASE_URL}/usuarios?q={nombre}")

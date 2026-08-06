@@ -5,7 +5,7 @@ from conftest import BASE_URL, logged_in, wait_for_text, wait_for_element, submi
 
 
 def unique_email(prefix="nuevo"):
-    return f"{prefix}{int(time.time() * 1000)}@test.com"
+    return f"{prefix}{int(time.time() * 1000)}@gmail.com"
 
 
 @pytest.mark.usefixtures("logged_in")

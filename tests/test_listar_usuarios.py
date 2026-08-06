@@ -9,7 +9,7 @@ class TestListarUsuarios:
 
     def test_listar_usuario_creado(self, driver):
         nombre = f"Listado Usuario {int(time.time())}"
-        correo = f"listado{int(time.time() * 1000)}@test.com"
+        correo = f"listado{int(time.time() * 1000)}@itla.edu.do"
         driver.get(f"{BASE_URL}/usuarios/crear")
         wait_for_element(driver, By.ID, "nombre")
         driver.find_element(By.ID, "nombre").send_keys(nombre)
